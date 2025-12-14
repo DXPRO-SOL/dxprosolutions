@@ -154,6 +154,7 @@ export default {
   --primary-dark: #004b8a;
   --primary-light: #e6f2ff;
   --secondary-color: #333333;
+  --accent: #111827; /* corporate neutral accent used site-wide */
   --light-gray: #f8f9fa;
   --medium-gray: #e9ecef;
   --dark-gray: #6c757d;

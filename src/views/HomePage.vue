@@ -152,7 +152,7 @@ export default {
 .slider { position: relative; width: 100%; height: 680px; overflow: hidden; }
 .slide { position: absolute; width: 100%; height: 100%; transition: transform 0.5s ease; display: flex; align-items: center; justify-content: center; }
 .slide-image { width: 100%; height: 100%; object-fit: cover; }
-.slide-text { position: absolute; z-index: 4; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 1000px; width: calc(100% - 120px); text-align: center; color: #fff; font-size: 34px; padding: 6px 8px; border-radius: 6px; text-shadow: 0 6px 18px rgba(0,0,0,0.7); font-weight: 700; background: transparent; }
+.slide-text { position: absolute; z-index: 4; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 1000px; width: calc(100% - 120px); text-align: center; color: #fff; font-size: 35px; padding: 6px 8px; border-radius: 6px; text-shadow: 0 12px 18px rgba(0,0,0,0.7); font-weight: 900; background: transparent; }
 .arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 26px; color: #fff; padding: 6px; cursor: pointer; z-index: 20; border-radius: 999px; left: 16px; }
 .right-arrow { right: 16px; left: auto; }
 
@@ -186,5 +186,14 @@ export default {
 
 @media (max-width: 1024px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 768px) { .cards-grid { grid-template-columns: 1fr; } .slider { height: 420px; } .card-media { height: 200px; } }
-@media (max-width: 640px) { .slider { height: 360px; } .slide-text { font-size: 18px; bottom: 8%; width: calc(100% - 40px); } }
+@media (max-width: 640px) {
+  .slider { height: 360px; }
+  .slide-text {
+    font-size: 14px;
+    top: 50%;
+    bottom: auto;
+    width: calc(100% - 40px);
+    transform: translate(-50%, -50%); /* 横中央・縦中央 */
+  }
+}
 </style>

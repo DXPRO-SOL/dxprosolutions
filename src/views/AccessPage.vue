@@ -1,259 +1,308 @@
 <template>
   <div class="access-page">
-    <div class="page-header">
-      <h1 class="page-title">アクセス</h1>
-      <div class="title-divider"></div>
-    </div>
+    <header class="page-header">
+      <div>
+        <h1 class="page-title">アクセス</h1>
+        <p class="page-sub">主要オフィスへの行き方と所在地情報</p>
+      </div>
+      <div class="title-divider" aria-hidden></div>
+    </header>
 
-    <div class="office-container">
-      <!-- 본사 정보 -->
-      <div class="office-card">
-        <div class="office-info">
-          <h2 class="office-name">DXPRO SOLUTIONS 本社</h2>
-          <div class="info-item">
-            <svg class="icon" viewBox="0 0 24 24">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-            </svg>
-            <p class="address">〒114-0014 東京都北区田端4-21-14 シャンボール大和郷 4階 2号</p>
+    <section class="access-grid">
+      <aside class="office-list" aria-label="Offices list">
+        <OfficeCard
+          v-for="(office, idx) in offices"
+          :key="office.id"
+          :office="office"
+          @select="selectOffice(idx)"
+          @directions="openDirections"
+          @copy="copyAddress"
+        />
+      </aside>
+
+      <div class="map-area">
+        <div class="map-frame">
+          <div class="map-placeholder" v-if="!mapLoaded">
+            <div class="spinner" aria-hidden></div>
           </div>
-          <div class="info-item">
-            <svg class="icon" viewBox="0 0 24 24">
-              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>
-            <a href="mailto:info@dxpro-sol.com" class="email">info@dxpro-sol.com</a>
-          </div>
-        </div>
-        <div class="office-map">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6476.93680533215!2d139.75243087484!3d35.73929032678414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188deba9dc10b9%3A0x959dc904c9c6444b!2z44CSMTE0LTAwMTQg5p2x5Lqs6YO95YyX5Yy655Sw56uv77yU5LiB55uu77yS77yR4oiS77yR77yUIOaIuOaenee3j-alreOCt-ODo-ODs-ODnOODvOODq-Wkp-WSjOmDtw!5e0!3m2!1sja!2sjp!4v1722505564939!5m2!1sja!2sjp"
+            :src="offices[selectedIndex].mapEmbed"
             width="100%"
             height="100%"
             style="border:0;"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            title="DXPRO SOLUTIONS 本社 地図"
+            :title="offices[selectedIndex].name + ' 地図'"
+            @load="onMapLoad"
           ></iframe>
-          <div class="map-marker"></div>
         </div>
-      </div>
-
-      <!-- 도쿄사무소 정보 -->
-      <div class="office-card">
-        <div class="office-info">
-          <h2 class="office-name">DXPRO SOLUTIONS 東京事務所</h2>
-          <div class="info-item">
-            <svg class="icon" viewBox="0 0 24 24">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-            </svg>
-            <p class="address">〒114-0001 東京都北区西ヶ原3丁目54-8 ウィンベルソロ駒込201</p>
+        <div class="map-footer">
+          <div class="map-info">
+            <strong>{{ offices[selectedIndex].name }}</strong>
+            <span class="muted">{{ offices[selectedIndex].address }}</span>
+            <div class="muted small" v-if="offices[selectedIndex].phone">{{ offices[selectedIndex].phone }} • {{ offices[selectedIndex].hours }}</div>
+          </div>
+          <div class="map-cta">
+            <button class="btn btn-primary" @click="openDirections(offices[selectedIndex].address)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M3 11l14-8v18L3 11z" fill="#fff"/>
+              </svg>
+              経路を開く
+            </button>
+            <button class="btn btn-outline" @click="copyAddress(offices[selectedIndex].address)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M16 1H4c-1 0-2 .9-2 2v12h2V3h12V1z" fill="#111827"/>
+                <path d="M20 5H8c-1 0-2 .9-2 2v14c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h12v14z" fill="#111827"/>
+              </svg>
+              住所をコピー
+            </button>
           </div>
         </div>
-        <div class="office-map">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.156525798795!2d139.75140621508643!3d35.74092453668826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188f9a18a4959d%3A0x690d3f6cc03e1b18!2z5p2x5Y2X5biC6Lqr44OX44O844Kr44O844OI44OR44Ot44Oq44K_44OX44O844OI44K-44Oz44OJ44O844OI44K_44OX44O844OI44K_44O844OJ44K_!5e0!3m2!1sja!2sjp!4v1722612345678!5m2!1sja!2sjp"
-            width="100%"
-            height="100%"
-            style="border:0;"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="DXPRO SOLUTIONS 東京事務所 地図"
-          ></iframe>
-          <div class="map-marker"></div>
-        </div>
       </div>
-    </div>
+    </section>
+
+    <div v-if="toast" class="toast" role="status" aria-live="polite">{{ toast }}</div>
   </div>
 </template>
+
 <script>
-export default {
-  name: 'AccessPage'
-}
+import { defineComponent } from 'vue';
+import OfficeCard from '@/components/OfficeCard.vue';
+import sharedOffices from '@/data/offices';
+
+export default defineComponent({
+  name: 'AccessPage',
+  components: { OfficeCard },
+  data() {
+    return {
+      selectedIndex: 0,
+      toast: null,
+      mapLoaded: false,
+      offices: []
+    };
+  },
+  created() {
+    // initialize shared offices data
+    this.offices = sharedOffices;
+  },
+  methods: {
+    selectOffice(idx) {
+      if (this.selectedIndex === idx) return;
+      this.mapLoaded = false;
+      this.selectedIndex = idx;
+    },
+    copyAddress(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          this.showToast('住所をコピーしました');
+        });
+      } else {
+        const el = document.createElement('textarea');
+        el.value = text;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        this.showToast('住所をコピーしました');
+      }
+    },
+    openDirections(address) {
+      const url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
+      window.open(url, '_blank');
+    },
+    onMapLoad() {
+      // called when iframe finishes loading
+      this.mapLoaded = true;
+    },
+    showToast(msg) {
+      this.toast = msg;
+      clearTimeout(this._toastTimer);
+      this._toastTimer = setTimeout(() => (this.toast = null), 2500);
+    }
+  },
+  beforeUnmount() {
+    clearTimeout(this._toastTimer);
+  }
+});
 </script>
 
 <style scoped>
 .access-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 60px 20px;
+  padding: 48px 20px;
   font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, sans-serif;
+  color: #111827;
 }
 
 .page-header {
-  text-align: center;
-  margin-bottom: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 36px;
 }
 
 .page-title {
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 20px;
-  letter-spacing: 0.05em;
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin: 0 0 6px 0;
 }
-
-.title-divider {
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, #3a7bd5, #00d2ff);
-  margin: 0 auto;
-  border-radius: 2px;
-}
-
-.office-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.office-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  background: white;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.office-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-}
-
-.office-info {
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.office-name {
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: #2c3e50;
-  margin-bottom: 30px;
-  position: relative;
-  padding-bottom: 15px;
-}
-
-.office-name::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 50px;
-  height: 3px;
-  background: linear-gradient(90deg, #3a7bd5, #00d2ff);
-}
-
-.info-item {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 20px;
-}
-
-.icon {
-  width: 24px;
-  height: 24px;
-  min-width: 24px;
-  margin-right: 15px;
-  color: #3a7bd5;
-}
-
-.address {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #4a5568;
+.page-sub {
+  color: #6b7280;
+  font-size: 0.98rem;
   margin: 0;
 }
 
+.title-divider {
+  width: 64px;
+  height: 4px;
+  background: linear-gradient(90deg, #111827, #374151);
+  border-radius: 2px;
+}
+
+.access-grid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.office-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.office-card.compact {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 8px 20px rgba(16,24,40,0.06);
+  border: 1px solid rgba(17,24,39,0.04);
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+.office-card.compact:focus,
+.office-card.compact:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(16,24,40,0.08);
+}
+.office-card.compact.active {
+  border-color: rgba(17,24,39,0.12);
+  box-shadow: 0 20px 44px rgba(17,24,39,0.08);
+}
+
+.office-meta {
+  margin-bottom: 10px;
+}
+.office-name {
+  font-size: 1.05rem;
+  margin: 0 0 6px 0;
+  font-weight: 700;
+}
+.address {
+  margin: 0 0 8px 0;
+  color: #475569;
+  font-size: 0.95rem;
+}
 .email {
-  font-size: 1.1rem;
-  color: #3a7bd5;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.email:hover {
-  color: #265a9e;
+  display: inline-block;
+  color: #111827;
   text-decoration: underline;
+  font-size: 0.95rem;
 }
 
-.office-map {
-  position: relative;
-  height: 100%;
-  min-height: 350px;
+.card-actions {
+  display: flex;
+  gap: 8px;
 }
-
-.office-map iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
+.btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-size: 0.92rem;
 }
+.btn-primary {
+  background: #111827;
+  color: #fff;
+  border-color: rgba(17,24,39,0.12);
+}
+.btn-outline {
+  background: transparent;
+  color: #111827;
+  border: 1px solid rgba(17,24,39,0.08);
+}
+.btn:active { transform: translateY(1px); }
 
-.map-marker {
+.map-area {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.map-frame {
+  background: #f8fafc;
+  border-radius: 12px;
+  height: 520px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(2,6,23,0.06);
+}
+.map-frame iframe { width: 100%; height: 100%; border: none; }
+
+.map-placeholder {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -100%);
-  width: 30px;
-  height: 30px;
-  background-color: #3a7bd5;
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(-45deg) translate(-50%, -100%);
+  inset: 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.85));
+  z-index: 10;
+}
+.spinner{
+  width:36px;height:36px;border-radius:50%;border:4px solid rgba(0,0,0,0.08);border-top-color:rgba(17,24,39,0.85);animation:spin 1s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.btn svg { vertical-align:middle; margin-right:8px; }
+
+:root{ --accent: #111827; --muted:#6b7280 }
+
+.map-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(17,24,39,0.04);
+}
+.map-info strong { display:block; }
+.map-info .muted { color: #6b7280; font-size: 0.95rem; }
+
+.toast {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: rgba(17,24,39,0.96);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(15,23,42,0.2);
+  z-index: 1200;
 }
 
-.map-marker::after {
-  content: '';
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  background-color: white;
-  border-radius: 50%;
-  top: 8px;
-  left: 8px;
-}
-
-@media (max-width: 900px) {
-  .office-card {
-    grid-template-columns: 1fr;
-  }
-  
-  .office-info {
-    padding: 30px;
-  }
-  
-  .office-map {
-    min-height: 300px;
-  }
+@media (max-width: 1000px) {
+  .access-grid { grid-template-columns: 1fr; }
+  .map-frame { height: 420px; }
 }
 
 @media (max-width: 600px) {
-  .access-page {
-    padding: 40px 15px;
-  }
-  
-  .page-title {
-    font-size: 2rem;
-  }
-  
-  .office-name {
-    font-size: 1.4rem;
-  }
-  
-  .address, .email {
-    font-size: 1rem;
-  }
-  
-  .info-item {
-    flex-direction: column;
-  }
-  
-  .icon {
-    margin-bottom: 10px;
-  }
+  .access-page { padding: 28px 14px; }
+  .page-title { font-size: 1.6rem; }
+  .map-frame { height: 340px; }
 }
 </style>

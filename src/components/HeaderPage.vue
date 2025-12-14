@@ -47,40 +47,23 @@ export default {
 
 <style>
 header {
-  background-color: #333;
-  color: white;
-  padding: 10px;
+  background-color: var(--surface);
+  color: var(--text);
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(2,6,23,0.04);
 }
 
-nav ul {
-  list-style-type: none;
-  padding: 0;
-}
+nav { display: flex; align-items: center; }
 
-nav ul li {
-  display: inline-block;
-  position: relative;
-  padding: 10px;
-}
+nav ul { list-style-type: none; padding: 0; margin: 0; display: flex; gap: 8px; }
 
-nav ul li ul {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #444;
-}
+nav ul li { position: relative; }
 
-nav ul li ul li {
-  display: block;
-}
+nav ul li ul { position: absolute; top: 100%; left: 0; background: var(--surface); border-radius: 8px; box-shadow: 0 10px 30px rgba(2,6,23,0.06); padding: 8px 0; min-width: 180px; }
 
-nav ul li:hover ul {
-  display: block;
-}
+nav ul li ul li { display: block; padding: 6px 14px; }
 
-nav a {
-  color: white;
-  text-decoration: none;
-}
+nav a { color: var(--text); text-decoration: none; font-weight: 700; padding: 8px 10px; display: inline-block; }
+
+nav a:hover { color: var(--accent); }
 </style>
