@@ -35,7 +35,7 @@
               <li><router-link to="/privacy" class="footer-link" @click="scrollToTop">プライバシーポリシー</router-link></li>
               <li>
                 <a 
-                  href="https://dxpro-recruit-c76b3f4df6d9.herokuapp.com/contact.html" 
+                  href="https://dxpro-recruit-8b55d006ba39.herokuapp.com/contact.html" 
                   class="footer-link"
                 >
                   お問い合わせ
@@ -50,7 +50,7 @@
           <h3 class="cta-title">お問い合わせ</h3>
           <p class="cta-text">ご質問やご相談がございましたら、お気軽にお問い合わせください。</p>
                 <a 
-                  href="https://dxpro-recruit-c76b3f4df6d9.herokuapp.com/contact.html" 
+                  href="https://dxpro-recruit-8b55d006ba39.herokuapp.com/contact.html" 
                   class="cta-button"
                 >
                   お問い合わせフォーム

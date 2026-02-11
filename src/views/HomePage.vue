@@ -99,7 +99,7 @@ export default {
           title: 'お問い合わせください',
           text: '何かご質問やご要望がございましたら、お気軽にお問い合わせください。',
           image: '/images/otoiawase2.jpg',
-          link: 'https://dxpro-recruit-c76b3f4df6d9.herokuapp.com/contact.html',
+          link: 'https://dxpro-recruit-8b55d006ba39.herokuapp.com/contact.html',
           button: 'お問い合わせ',
           external: true   // ←ここを追加
         },

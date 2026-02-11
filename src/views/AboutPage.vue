@@ -106,11 +106,12 @@ export default {
             <li>RPA導入による自動化支援</li>
             <li>セキュリティポリシー設計</li>
           </ul>
-        </div><br>
-
-        <div class="case-study">
-          <h4>導入事例：大手製造業「XYZコーポレーション」</h4>
-
+      goToContact() {
+        // モーダルを閉じてbodyのoverflowを復元
+        this.closeDialog();
+        // ルーター移動
+        window.location.href = 'https://dxpro-recruit-8b55d006ba39.herokuapp.com/contact.html';
+      },
           <div class="case-block">
             <h5>プロジェクト目標</h5>
             <ul>
@@ -454,7 +455,7 @@ export default {
       this.closeDialog();
 
       // 라우터 이동
-      window.location.href = 'https://dxpro-recruit-c76b3f4df6d9.herokuapp.com/contact.html';
+      window.location.href = 'https://dxpro-recruit-8b55d006ba39.herokuapp.com/contact.html';
 
     }
   }

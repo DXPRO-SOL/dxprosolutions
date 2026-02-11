@@ -66,7 +66,7 @@
               </li>
               <li class="nav-item" :class="{ active: activeMenu === 'contact' }">
                 <a 
-                  href="https://dxpro-recruit-c76b3f4df6d9.herokuapp.com/contact.html" 
+                  href="https://dxpro-recruit-8b55d006ba39.herokuapp.com/contact.html" 
                   class="nav-link" 
                   @click="handleLinkClick"
                 >
