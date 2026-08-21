@@ -5,8 +5,8 @@
       <div class="hero-content">
         <h1 class="hero-title">IT専門ソリューションで<br>ビジネス革新を実現します</h1>
         <p class="hero-subtitle">
-          DXPRO SOLUTIONSは<br>
-          お客様のビジネス課題を解決するITソリューションを提供します
+          現状のヒアリングから設計・開発・運用まで<br>
+          お客様の業務課題に合わせて一貫して対応します
         </p>
         <div class="scroll-indicator" @click="scrollToServices">
           <span>スクロールダウン</span>
@@ -26,7 +26,7 @@
         <div class="service-card consulting">
           <div class="card-content">
             <h3 class="service-title">システムコンサルティング</h3>
-            <p class="service-desc">デジタルトランスフォーメーション戦略の立案から実行まで包括的に支援</p>
+            <p class="service-desc">現状業務のヒアリングから課題整理、改善計画の策定・実行支援まで対応します</p>
             <button class="detail-button" @click="openDialog('consulting')">詳細を見る</button>
           </div>
         </div>
@@ -35,7 +35,7 @@
         <div class="service-card development">
           <div class="card-content">
             <h3 class="service-title">Web/モバイル開発</h3>
-            <p class="service-desc">最新技術を活用したユーザー中心のデジタルプラットフォーム構築</p>
+            <p class="service-desc">要件定義から設計・実装・テスト・リリースまで一貫して開発します</p>
             <button class="detail-button" @click="openDialog('webMobileDevelopment')">詳細を見る</button>
           </div>
         </div>
@@ -44,7 +44,7 @@
         <div class="service-card operation">
           <div class="card-content">
             <h3 class="service-title">システム運用</h3>
-            <p class="service-desc">24/365の安定運用を実現するトータルソリューション</p>
+            <p class="service-desc">監視・障害対応・定期メンテナンスまで、稼働中システムを継続的に支えます</p>
             <button class="detail-button" @click="openDialog('maintenance')">詳細を見る</button>
           </div>
         </div>
@@ -53,7 +53,7 @@
         <div class="service-card erp">
           <div class="card-content">
             <h3 class="service-title">ERP導入</h3>
-            <p class="service-desc">SAP/Oracleベースのグローバル標準ERPシステム構築</p>
+            <p class="service-desc">SAP/Oracle等のERPパッケージ選定から導入・定着支援まで対応します</p>
             <button class="detail-button" @click="openDialog('sapebs')">詳細を見る</button>
           </div>
         </div>
@@ -62,8 +62,18 @@
         <div class="service-card data">
           <div class="card-content">
             <h3 class="service-title">データ移行</h3>
-            <p class="service-desc">高品質なデータマイグレーションでビジネス継続性を保証</p>
+            <p class="service-desc">既存システムからの移行計画立案・実行・移行後の検証まで対応します</p>
             <button class="detail-button" @click="openDialog('db')">詳細を見る</button>
+          </div>
+        </div>
+
+        <!-- NOKORI（自社パッケージ） -->
+        <div class="service-card nokori">
+          <div class="card-content">
+            <span class="service-badge">自社パッケージ</span>
+            <h3 class="service-title">NOKORI</h3>
+            <p class="service-desc">タスク・工数・承認フローを一元管理するクラウド型業務管理パッケージです</p>
+            <button class="detail-button" @click="goToNokori">詳細を見る</button>
           </div>
         </div>
       </div>
@@ -101,50 +111,21 @@ export default {
         <div class="info-block">
           <h3>提供内容</h3>
           <ul>
-            <li>DX戦略ロードマップ策定</li>
-            <li>業務プロセス最適化（BPR）</li>
-            <li>RPA導入による自動化支援</li>
-            <li>セキュリティポリシー設計</li>
+            <li>現行業務・システムの現状把握とヒアリング</li>
+            <li>課題の整理と改善プランの策定</li>
+            <li>RPA・業務自動化ツールの選定と導入支援</li>
+            <li>セキュリティポリシー・運用ルールの整備</li>
           </ul>
-      goToContact() {
-        // モーダルを閉じてbodyのoverflowを復元
-        this.closeDialog();
-        // ルーター移動
-        window.location.href = 'https://dxpro-recruit-8b55d006ba39.herokuapp.com/contact.html';
-      },
-          <div class="case-block">
-            <h5>プロジェクト目標</h5>
-            <ul>
-              <li>業務効率向上とコスト削減</li>
-              <li>デジタルトランスフォーメーション推進</li>
-            </ul>
-          </div><br>
+        </div><br>
 
-          <div class="case-block">
-            <h5>現状分析</h5>
-            <ul>
-              <li>製造工程と業務フローの詳細調査</li>
-              <li>ボトルネックの特定と改善提案</li>
-            </ul>
-          </div><br>
-
-          <div class="case-block">
-            <h5>改善施策</h5>
-            <ul>
-              <li>RPAによる手作業業務の自動化</li>
-              <li>業務プロセス再設計（BPR）</li>
-              <li>データ可視化ツール導入</li>
-            </ul>
-          </div><br>
-
-          <div class="case-block case-result">
-            <h5>導入後の効果</h5>
-            <ul>
-              <li>業務効率：30%改善</li>
-              <li>年間コスト：2億円削減</li>
-              <li>意思決定の迅速化、経営品質向上</li>
-            </ul>
-          </div>
+        <div class="info-block">
+          <h3>こんな課題に対応します</h3>
+          <ul>
+            <li>手作業や紙業務が多く、非効率な業務プロセスがある</li>
+            <li>システムが乱立し、データ連携ができていない</li>
+            <li>DXを進めたいが、何から着手すべきか分からない</li>
+            <li>既存システムの保守性・拡張性に不安がある</li>
+          </ul>
         </div><br>
 
         <div class="tools-list">
@@ -155,11 +136,11 @@ export default {
         </div><br>
 
         <div class="method-grid">
-          <h3>コンサルティングプロセス</h3>
-          <div class="method-item">現状分析・業務調査</div>
-          <div class="method-item">課題抽出・改善提案</div>
-          <div class="method-item">RPA・ツール導入支援</div>
-          <div class="method-item">定着化・効果測定</div>
+          <h3>進め方</h3>
+          <div class="method-item">ヒアリング・現状分析</div>
+          <div class="method-item">課題整理・改善提案</div>
+          <div class="method-item">ツール選定・導入支援</div>
+          <div class="method-item">運用定着・効果検証</div>
         </div>
       `
     },
@@ -170,41 +151,21 @@ export default {
         <div class="info-block">
           <h3>提供内容</h3>
           <ul>
-            <li>24時間365日システム監視</li>
-            <li>性能改善・キャパシティプランニング</li>
-            <li>セキュリティ管理・脆弱性対応</li>
-            <li>バックアップ・災害復旧設計</li>
+            <li>24時間365日のシステム監視・障害検知</li>
+            <li>性能監視とキャパシティプランニング</li>
+            <li>セキュリティパッチ適用・脆弱性対応</li>
+            <li>バックアップ運用・障害復旧対応</li>
           </ul>
         </div><br>
 
-        <div class="case-study">
-          <h4>導入事例：金融業「DEF銀行」</h4>
-
-          <div class="case-block">
-            <h5>課題</h5>
-            <ul>
-              <li>オンラインバンキングシステムの高負荷対応</li>
-              <li>24時間の安定稼働とセキュリティ確保</li>
-            </ul>
-          </div><br>
-
-          <div class="case-block">
-            <h5>対応施策</h5>
-            <ul>
-              <li>クラウド監視システムによるリアルタイム監視</li>
-              <li>定期パフォーマンスチューニング</li>
-              <li>セキュリティパッチ適用と脆弱性管理</li>
-            </ul>
-          </div><br>
-
-          <div class="case-block case-result">
-            <h5>導入後の効果</h5>
-            <ul>
-              <li>システム稼働率：99.99%維持</li>
-              <li>障害対応時間：平均30%短縮</li>
-              <li>顧客満足度向上、運用コスト削減</li>
-            </ul>
-          </div>
+        <div class="info-block">
+          <h3>こんな課題に対応します</h3>
+          <ul>
+            <li>障害発生時の対応体制が整っていない</li>
+            <li>アクセス増加時の性能劣化が心配</li>
+            <li>セキュリティ対応を継続的に行う人員が不足している</li>
+            <li>運用保守を外部に任せて開発リソースを確保したい</li>
+          </ul>
         </div><br>
 
         <div class="tools-list">
@@ -215,11 +176,11 @@ export default {
         </div><br>
 
         <div class="method-grid">
-          <h3>運用プロセス</h3>
-          <div class="method-item">監視設定・アラート対応</div>
-          <div class="method-item">性能改善・最適化</div>
-          <div class="method-item">セキュリティパッチ適用</div>
-          <div class="method-item">バックアップ・DR運用</div>
+          <h3>進め方</h3>
+          <div class="method-item">監視設計・アラート設定</div>
+          <div class="method-item">日次・月次の性能レポート</div>
+          <div class="method-item">パッチ適用・脆弱性対応</div>
+          <div class="method-item">バックアップ・障害復旧対応</div>
         </div>
       `
     },
@@ -230,41 +191,21 @@ export default {
         <div class="info-block">
           <h3>提供内容</h3>
           <ul>
-            <li>SAP S/4HANA / Oracle EBS 導入</li>
-            <li>業務プロセスに合わせたカスタマイズ</li>
-            <li>多言語・多通貨対応</li>
-            <li>グローバル展開企業向けスケーラブル基盤</li>
+            <li>SAP S/4HANA / Oracle EBS の導入・移行支援</li>
+            <li>業務プロセスに合わせたアドオン開発・カスタマイズ</li>
+            <li>多言語・多通貨など海外拠点対応</li>
+            <li>既存システムとのデータ連携設計</li>
           </ul>
         </div><br>
 
-        <div class="case-study">
-          <h4>導入事例：製造業「GHIエレクトロニクス」</h4>
-
-          <div class="case-block">
-            <h5>プロジェクト目標</h5>
-            <ul>
-              <li>グローバル業務統合とリアルタイム管理</li>
-              <li>会計・生産管理の効率化</li>
-            </ul>
-          </div><br>
-
-          <div class="case-block">
-            <h5>導入施策</h5>
-            <ul>
-              <li>SAP S/4HANAによる統合ERP構築</li>
-              <li>Oracle EBSと既存システムのデータ連携</li>
-              <li>業務フローに合わせたアドオン開発</li>
-            </ul>
-          </div><br>
-
-          <div class="case-block case-result">
-            <h5>導入後の効果</h5>
-            <ul>
-              <li>グローバル会計処理の自動化</li>
-              <li>生産管理リードタイムの短縮：20%削減</li>
-              <li>経営判断の迅速化と透明性向上</li>
-            </ul>
-          </div>
+        <div class="info-block">
+          <h3>こんな課題に対応します</h3>
+          <ul>
+            <li>会計・生産・在庫などのシステムが分断されている</li>
+            <li>海外拠点との業務・データ統合を進めたい</li>
+            <li>老朽化したERPをS/4HANAへ刷新したい</li>
+            <li>導入後の運用・保守まで任せられる相手を探している</li>
+          </ul>
         </div><br>
 
         <div class="tools-list">
@@ -276,12 +217,12 @@ export default {
         </div><br>
 
         <div class="method-grid">
-          <h3>導入プロセス</h3>
+          <h3>進め方</h3>
           <div class="method-item">業務分析・要件定義</div>
-          <div class="method-item">ERP設定・カスタマイズ開発</div>
+          <div class="method-item">ERP設定・アドオン開発</div>
           <div class="method-item">テスト・検証</div>
           <div class="method-item">ユーザートレーニング</div>
-          <div class="method-item">本番導入・運用支援</div>
+          <div class="method-item">本番移行・運用支援</div>
         </div>
       `
     },
@@ -293,41 +234,20 @@ export default {
           <h3>提供内容</h3>
           <ul>
             <li>データベース移行（Oracle, SQL Server, MySQL 等）</li>
-            <li>オンプレミス → クラウド移行</li>
-            <li>データクレンジングと品質保証</li>
-            <li>移行後の検証・チューニング</li>
+            <li>オンプレミス環境からクラウドへの移行</li>
+            <li>データクレンジング・整合性チェック</li>
+            <li>移行後の動作検証・性能チューニング</li>
           </ul>
         </div><br>
 
-        <div class="case-study">
-          <h4>導入事例：物流業「JKLロジスティクス」</h4>
-
-          <div class="case-block">
-            <h5>課題</h5>
-            <ul>
-              <li>古いオンプレDBからクラウドDBへの安全な移行</li>
-              <li>ダウンタイム最小化</li>
-              <li>データ整合性確保</li>
-            </ul>
-          </div><br>
-
-          <div class="case-block">
-            <h5>対応施策</h5>
-            <ul>
-              <li>段階的移行戦略とバックアップ計画策定</li>
-              <li>データクレンジング・正規化作業</li>
-              <li>クラウドDBにリハーサル移行、検証後本番移行</li>
-            </ul>
-          </div><br>
-
-          <div class="case-block case-result">
-            <h5>導入後の効果</h5>
-            <ul>
-              <li>移行ダウンタイム：最小限化（数分レベル）</li>
-              <li>データ整合性100%確保</li>
-              <li>運用効率向上、クラウド活用によるコスト削減</li>
-            </ul>
-          </div>
+        <div class="info-block">
+          <h3>こんな課題に対応します</h3>
+          <ul>
+            <li>老朽化したオンプレDBをクラウドへ移行したい</li>
+            <li>移行時のダウンタイムを最小限にしたい</li>
+            <li>データの重複・不整合を整理してから移行したい</li>
+            <li>移行後のトラブルに備えて検証をしっかり行いたい</li>
+          </ul>
         </div><br>
 
         <div class="tools-list">
@@ -339,7 +259,7 @@ export default {
         </div><br>
 
         <div class="method-grid">
-          <h3>移行プロセス</h3>
+          <h3>進め方</h3>
           <div class="method-item">現行データ分析・評価</div>
           <div class="method-item">移行計画策定・バックアップ準備</div>
           <div class="method-item">テスト移行・データ検証</div>
@@ -360,57 +280,14 @@ export default {
               </ul>
             </div><br>
 
-            <div class="case-study">
-              <h4>導入事例：大手小売チェーン「ABCストア」</h4>
-
-              <!-- 프로젝트 목표 -->
-              <div class="case-block">
-                <h5>プロジェクト目標</h5>
-                <ul>
-                  <li>モバイルユーザー利便性向上</li>
-                  <li>オンライン購入率の増加</li>
-                </ul>
-              </div><br>
-
-              <!-- 現状分析 -->
-              <div class="case-block">
-                <h5>現状分析</h5>
-                <ul>
-                  <li>既存ECサイトのユーザー行動分析</li>
-                  <li>業務フローの可視化と改善点特定</li>
-                </ul>
-              </div><br>
-
-              <!-- 技術導入 -->
-              <div class="case-block">
-                <h5>技術導入</h5>
-                <ul>
-                  <li>レスポンシブデザイン + PWA化</li>
-                  <li>バックエンド再設計：Node.js + AWSクラウド</li>
-                  <li>アクセス集中時でも安定稼働を実現</li>
-                </ul>
-              </div><br>
-
-              <!-- 開発プロセス -->
-              <div class="case-block">
-                <h5>開発プロセス</h5>
-                <ul>
-                  <li>期間：約6ヶ月、アジャイル開発</li>
-                  <li>2週間スプリントで順次リリース</li>
-                  <li>FigmaによるUI/UXプロトタイピングとユーザーテスト</li>
-                </ul>
-              </div><br>
-
-              <!-- 導入後の効果 -->
-              <div class="case-block case-result">
-                <h5>導入後の効果</h5>
-                <ul>
-                  <li>オンライン購入率：+25%</li>
-                  <li>アプリインストール数：+30%</li>
-                  <li>ページ表示速度：平均40%向上</li>
-                  <li>ユーザー離脱率の低下、収益拡大と顧客体験向上を同時に実現</li>
-                </ul>
-              </div>
+            <div class="info-block">
+              <h3>こんな課題に対応します</h3>
+              <ul>
+                <li>既存サイト・アプリの使い勝手やパフォーマンスを改善したい</li>
+                <li>新規サービスをゼロから設計・開発してほしい</li>
+                <li>アクセス集中時にも安定して稼働する基盤にしたい</li>
+                <li>リリース後の運用・機能追加まで任せられる体制がほしい</li>
+              </ul>
             </div><br>
 
             <div class="tools-list">
@@ -423,10 +300,10 @@ export default {
             </div><br>
 
             <div class="method-grid">
-              <h3>開発プロセス</h3>
+              <h3>進め方</h3>
               <div class="method-item">要件定義・業務分析</div>
               <div class="method-item">UI/UX設計・プロトタイピング</div>
-              <div class="method-item">アジャイル開発・短期リリース</div>
+              <div class="method-item">アジャイル開発・段階的リリース</div>
               <div class="method-item">テスト・品質保証</div>
               <div class="method-item">本番リリース・運用サポート</div>
             </div>
@@ -449,6 +326,9 @@ export default {
       if (section) {
         section.scrollIntoView({ behavior: "smooth" });
       }
+    },
+    goToNokori() {
+      this.$router.push('/Nokori');
     },
     goToContact() {
       // 모달 닫고 body overflow 복구
@@ -566,6 +446,20 @@ export default {
 .service-card.operation::before { background: linear-gradient(90deg, #8e2de2, #4a00e0); }
 .service-card.erp::before { background: linear-gradient(90deg, #f46b45, #eea849); }
 .service-card.data::before { background: linear-gradient(90deg, #1d976c, #93f9b9); }
+.service-card.nokori::before { background: linear-gradient(90deg, #0a1228, #2d72d9); }
+
+.service-badge {
+  display: inline-block;
+  align-self: flex-start;
+  background: #eef3ff;
+  color: #2d72d9;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
 
 .card-content {
   padding: 30px;

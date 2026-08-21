@@ -345,7 +345,7 @@ export default {
     },
     goToApplication() {
       this.closeModal();
-      window.location.href = "https://dxpro-recruit-c76b3f4df6d9.herokuapp.com/login.html";
+      window.location.href = "https://dxpro-recruit-8b55d006ba39.herokuapp.com/login.html?msg=login_required";
     }
   }
 }

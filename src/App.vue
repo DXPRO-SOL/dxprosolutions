@@ -45,6 +45,10 @@
               <li class="nav-item" :class="{ active: activeMenu === 'about' }">
                 <router-link to="/about" class="nav-link" @click="handleLinkClick">事業紹介</router-link>
               </li>
+
+              <li class="nav-item" :class="{ active: activeMenu === 'solutions' }">
+                <router-link to="/Nokori" class="nav-link" @click="handleLinkClick">ソリューション</router-link>
+              </li>
               
               <li class="nav-item" :class="{ active: activeMenu === 'privacy' }">
                 <router-link to="/privacy" class="nav-link" @click="handleLinkClick">プライバシーポリシー</router-link>
@@ -246,23 +250,25 @@ body {
 .nav-list {
   display: flex;
   list-style: none;
+  flex-wrap: nowrap;
 }
 
 .nav-item {
   position: relative;
-  margin: 0 10px;
+  margin: 0 4px;
 }
 
 .nav-link {
   color: var(--secondary-color);
   text-decoration: none;
   font-weight: 600;
-  font-size: 15px;
-  padding: 10px 15px;
+  font-size: 14px;
+  padding: 10px 10px;
   display: flex;
   align-items: center;
   transition: var(--transition);
   border-radius: 4px;
+  white-space: nowrap;
 }
 
 .nav-link:hover {

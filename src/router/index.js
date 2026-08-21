@@ -12,6 +12,8 @@ import RecruitmentPositionPage from '../views/SaiyoPage.vue'
 import RecruitmentinformationPage from '../views/RecruitmentinformationPage.vue'
 import SubRecruitmentinformationPage from '../views/SubRecruitmentinformationPage.vue'
 import RecruitContactPage from '../views/RecruitContactPage.vue'
+import NokoriPage from '../views/NokoriPage.vue'
+import NokoriLoginPage from '../views/NokoriLoginPage.vue'
 import IntranetPage from '../views/IntranetPage.vue'
 import ProfilePage from '../views/ProfilePage.vue'
 import WorkReportPage from '../views/WorkReportPage.vue'
@@ -80,6 +82,16 @@ const routes = [
     path: '/RecruitContact',
     name: 'RecruitContactPage',
     component: RecruitContactPage
+  },
+  {
+    path: '/Nokori',
+    name: 'NokoriPage',
+    component: NokoriPage
+  },
+  {
+    path: '/NokoriLogin',
+    name: 'NokoriLoginPage',
+    component: NokoriLoginPage
   },
   {
     path: '/Intranet',
