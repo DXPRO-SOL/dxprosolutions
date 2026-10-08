@@ -14,6 +14,7 @@ import SubRecruitmentinformationPage from '../views/SubRecruitmentinformationPag
 import RecruitContactPage from '../views/RecruitContactPage.vue'
 import NokoriPage from '../views/NokoriPage.vue'
 import NokoriLoginPage from '../views/NokoriLoginPage.vue'
+import NokoriComparePage from '../views/NokoriComparePage.vue'
 import IntranetPage from '../views/IntranetPage.vue'
 import ProfilePage from '../views/ProfilePage.vue'
 import WorkReportPage from '../views/WorkReportPage.vue'
@@ -92,6 +93,11 @@ const routes = [
     path: '/NokoriLogin',
     name: 'NokoriLoginPage',
     component: NokoriLoginPage
+  },
+  {
+    path: '/NokoriCompare',
+    name: 'NokoriComparePage',
+    component: NokoriComparePage
   },
   {
     path: '/Intranet',
