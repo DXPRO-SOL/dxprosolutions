@@ -469,7 +469,7 @@ export default {
 .nokori-promo {
   position: relative;
   background: linear-gradient(120deg, #1a1140, #2a1763);
-  padding: 64px 6% 96px;
+  padding: 64px 6% 140px;
   transition: background 0.6s ease;
   overflow: hidden;
   box-shadow: 0 -12px 24px -12px rgba(0,0,0,0.35);
@@ -489,8 +489,15 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 110px;
-  background: linear-gradient(to bottom, rgba(247,249,251,0) 0%, #f7f9fb 100%);
+  height: 160px;
+  background: linear-gradient(
+    to bottom,
+    rgba(247,249,251,0) 0%,
+    rgba(247,249,251,0.05) 30%,
+    rgba(247,249,251,0.25) 55%,
+    rgba(247,249,251,0.6) 75%,
+    #f7f9fb 100%
+  );
   pointer-events: none;
 }
 .nokori-promo-inner {
@@ -785,7 +792,7 @@ export default {
   .nk-chip--2 { right: -2%; }
 }
 @media (max-width: 640px) {
-  .nokori-promo { padding: 40px 5% 72px; }
+  .nokori-promo { padding: 40px 5% 96px; }
   .nokori-badge { font-size: 11px; padding: 6px 14px; white-space: normal; text-align: left; }
   .nokori-title { font-size: 20px; line-height: 1.6; }
   .nokori-desc { font-size: 13.5px; }
